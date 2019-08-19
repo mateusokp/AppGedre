@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Controladores
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list padding>
+    <ion-button expand="block" (click)="startScanning()">
+        <ion-icon name="search"></ion-icon>&nbsp;Scan</ion-button>
+    <ion-list-header>
+      Paired Devices
+    </ion-list-header>
+    <ion-item *ngFor="let device of paired">
+      <span (click)="selectDevice(device.address)">
+        {{device.name}}
+      </span>
+    </ion-item>
+    <ion-button expand="block" (click)="disconnect()">Disconnect</ion-button>
+    <ion-list-header>
+      available Devices
+    </ion-list-header>
+    <ion-item *ngFor='let device of unpaired'>
+      <span (click)="selectDevice(device.address)">
+        {{device.name}}
+      </span>
+    </ion-item>
+    <ion-spinner name="crescent" *ngIf="gettingDevices"></ion-spinner>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-range min="0" max="255" color="secondary" [(ngModel)]="intAtual" (ionChange)="mandarDados(intAtual)">
+        <ion-label slot="start">0%</ion-label>
+        <ion-label slot="end">100%</ion-label>
+      </ion-range>
+      <ion-badge>
+        {{intAtual}}
+      </ion-badge>
+    </ion-item>  
+    <ion-item>
+      <ion-range min="0" max="255" color="primary" [(ngModel)]="intAtual2" (ionChange)="mandarDado(intAtual2)">
+        <ion-label slot="start">0%</ion-label>
+        <ion-label slot="end">100%</ion-label>
+      </ion-range>
+      <ion-badge>
+        {{intAtual2}}
+      </ion-badge>
+    </ion-item>  
+  </ion-list>
+  <ion-button expand="block"  class="submit-button" (click)="mandarDados(intAtual)">
+    <ion-icon name="send"></ion-icon>&nbsp;Enviar dados via Bluetooth
+  </ion-button>
+</ion-content>

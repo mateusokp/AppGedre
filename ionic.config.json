@@ -1,0 +1,7 @@
+{
+  "name": "AgoraVai",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
